@@ -1,0 +1,35 @@
+#------------------------------------------------------------
+#POWERCOMMANDS CONFIGURATION FILE
+#------------------------------------------------------------
+#COLOR CODES: &
+#BLACK: &0
+#BLUE: &1
+#DARK_GREEN: &2
+#DARK_AQUA: &3
+#DARK_RED: &4
+#DARK_PURPLE: &5
+#GOLD: &6
+#LIGHT_GRAY: &7
+#DARK_GRAY: &8
+#BLUE: &9
+#GREEN: &a
+#AQUA: &b
+#RED: &c
+#LIGHT_PURPLE: &d
+#YELLOW: &e
+#WHITE: &f
+#FORMATTING CODES:
+#BOLD: &l<color-code>
+#UNDERLINE: &u<color-code>
+#ITALIC: &o<color-code>
+#STRIKETHROUGH: &m<color-code>
+#OBFUSCATED: &k<color-code>
+#RESET: &r<color-code>
+#------------------------------------------------------------
+
+
+#MESSAGES:
+prefix: '&5[&4&lPowerCommands&5]'
+#THE VARIABLE FOR THE PREFIX IS '?PREFIX?'
+messages:
+  reload-configuration: "?PREFIX? &dSuccessfully reloaded config.yml"

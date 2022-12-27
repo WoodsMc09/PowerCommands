@@ -23,6 +23,8 @@ public class Action implements ActionExecuter {
             pC.getActionYML().saveConfig();
             pC.getServer().getLogger().log(Level.INFO, "Command Actions: registered " + actionClasses.getName());
         }
+        pC.getActionYML().getConfig().set("registered", true);
+        pC.getActionYML().saveConfig();
 
     }
 

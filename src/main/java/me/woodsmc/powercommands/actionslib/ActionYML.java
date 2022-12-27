@@ -24,11 +24,11 @@ public class ActionYML {
 
     public void reloadConfig(){
         if(this.configFile == null){
-            this.configFile = new File(this.plugin.getDataFolder(), "actions.yml");
+            this.configFile = new File(this.plugin.getDataFolder(), "commandmanager/actions.yml");
         }
         this.configuration = YamlConfiguration.loadConfiguration(this.configFile);
 
-        InputStream defaultStream = this.plugin.getResource("actions.yml");
+        InputStream defaultStream = this.plugin.getResource("commandmanager/actions.yml");
         if(defaultStream != null){
             YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defaultStream));
             this.configuration.setDefaults(defaultConfig);
@@ -53,10 +53,10 @@ public class ActionYML {
 
     public void saveDefaultConfig() {
         if (this.configFile == null) {
-            this.configFile = new File(plugin.getDataFolder(), "actions.yml");
+            this.configFile = new File(plugin.getDataFolder(), "commandmanager/actions.yml");
         }
         if(!this.configFile.exists()){
-            plugin.saveResource("actions.yml", false);
+            plugin.saveResource("commandmanager/actions.yml", false);
         }
     }
 }
