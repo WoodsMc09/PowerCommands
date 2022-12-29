@@ -9,13 +9,16 @@ import java.util.Set;
 import java.util.logging.Level;
 
 public class Action implements ActionExecuter {
+    //main instance
     private final PowerCommands pC = PowerCommands.getPlugin(PowerCommands.class);
 
     public void RegisterActions(){
+        //check if actions are already registered
         if(pC.getActionYML().getConfig().getBoolean("registered")){
             pC.getServer().getLogger().log(Level.INFO, "Command Actions: registered");
             return;
         }
+        //register actions
         Reflections reflections = new Reflections("me.woodsmc.powercommands.actionslib.actions");
         Set<Class<? extends Action>> classes = reflections.getSubTypesOf(Action.class);
         for(Class<? extends Action> actionClasses : classes){

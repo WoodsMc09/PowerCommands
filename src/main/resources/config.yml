@@ -27,9 +27,57 @@
 #RESET: &r<color-code>
 #------------------------------------------------------------
 
-
-#MESSAGES:
+#------------------------------------------------------------
+#MESSAGE CONFIGURATION
+#------------------------------------------------------------
 prefix: '&5[&4&lPowerCommands&5]'
 #THE VARIABLE FOR THE PREFIX IS '?PREFIX?'
 messages:
   reload-configuration: "?PREFIX? &dSuccessfully reloaded config.yml"
+
+
+#------------------------------------------------------------
+#INVENTORY CONFIGURATION
+#------------------------------------------------------------
+#VARIABLE FOR THE COMMAND NAME IS '?CMD?'
+#VARIABLE FOR THE COMMAND PERMISSION IS '?PERM?'
+#VARIABLE FOR THE COMMAND CONSOLE USE IS '?CON_USE?'
+
+creation-inventory:
+  title: "&d&lCommand Creation &5?CMD?"
+  size: 27 #THIS NUMBER MUST BE DIVISIBLE BY 9
+  items:
+    name-editor:
+      type: 'NAME_TAG'
+      title: "&d&lCOMMAND NAME"
+      slot: 9
+      lore:
+        - "&7LEFT-CLICK to edit command name"
+        - "&7Current name: '&5/?CMD?&7'"
+    permission-editor:
+      type: 'PAPER'
+      title: "&d&lCOMMAND PERMISSION"
+      slot: 11
+      lore:
+        - "&7LEFT-CLICK to edit command permission"
+        - "&7Current permission: '&5?PERM?'"
+    console-use:
+      type: 'COMMAND_BLOCK'
+      title: "&d&lCONSOLE USE?"
+      slot: 13
+      lore:
+        - "&7LEFT-CLICK to allow/disallow console to use"
+        - "&7this command"
+        - "&7Allowed: &5?CON_USE?"
+    actions-editor:
+      type: 'LEVER'
+      title: "&d&lCOMMAND ACTIONS"
+      slot: 15
+      lore:
+        - "&7LEFT-CLICK to edit command actions"
+    arguments-editor:
+      type: 'BOOK'
+      title: "&d&lCOMMAND ARGUMENTS"
+      slot: 17
+      lore:
+        - "&7LEFT-CLICK to edit command arguments"

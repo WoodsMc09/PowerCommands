@@ -4,3 +4,10 @@ main: me.woodsmc.powercommands.PowerCommands
 api-version: 1.15
 authors: [ WoodsMc ]
 description: Create infinite commands! in-game GUI editors!
+commands:
+  powercommands:
+    description: Main command to create/delete/edit commands!
+    permission: powercommands.pc.usage
+    permission-message: "§4§lSorry! §dYou do not have permission to execute this command!"
+    aliases:
+      - pc

@@ -2,6 +2,9 @@ package me.woodsmc.powercommands;
 
 import me.woodsmc.powercommands.actionslib.actions.Action;
 import me.woodsmc.powercommands.actionslib.ActionYML;
+import me.woodsmc.powercommands.commands.PowerCommandsCommand;
+import me.woodsmc.powercommands.inventory.InventoryManager;
+import me.woodsmc.powercommands.messages.StringManager;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,10 +21,10 @@ public final class PowerCommands extends JavaPlugin {
     @Override
     public void onEnable() {
         PluginManager pM = getServer().getPluginManager();
-        //files
-        actionYML = new ActionYML(this);
         getConfig().options().copyDefaults();
         saveDefaultConfig();
+        //files
+        actionYML = new ActionYML(this);
         File file = new File(this.getDataFolder(), "commandmanager/README.txt");
         if(!file.exists()){
             try {
@@ -46,10 +49,20 @@ public final class PowerCommands extends JavaPlugin {
                 e1.printStackTrace();
             }
         }
-
+        reloadConfig();
         //action
         action = new Action();
         action.RegisterActions();
+
+        //commands
+        getCommand("powercommands").setExecutor(new PowerCommandsCommand());
+        getCommand("powercommands").setTabCompleter(new PowerCommandsCommand());
+
+        //listeners
+        pM.registerEvents(new InventoryManager(), this);
+
+        //enable meesage
+        getServer().getConsoleSender().sendMessage(StringManager.getPrefix() + " §dHas enabled successfully!");
     }
 
     @Override
