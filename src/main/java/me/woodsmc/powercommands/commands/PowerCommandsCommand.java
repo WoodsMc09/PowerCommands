@@ -1,6 +1,5 @@
 package me.woodsmc.powercommands.commands;
 
-import jdk.internal.foreign.abi.Binding;
 import me.woodsmc.powercommands.PowerCommands;
 import me.woodsmc.powercommands.command.CommandManager;
 import me.woodsmc.powercommands.inventory.InventoryManager;
