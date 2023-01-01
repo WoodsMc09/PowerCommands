@@ -1,8 +1,12 @@
 package me.woodsmc.powercommands.commands;
 
+import jdk.internal.foreign.abi.Binding;
 import me.woodsmc.powercommands.PowerCommands;
+import me.woodsmc.powercommands.command.CommandManager;
 import me.woodsmc.powercommands.inventory.InventoryManager;
+import me.woodsmc.powercommands.inventory.ItemManager;
 import me.woodsmc.powercommands.messages.StringManager;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,6 +23,8 @@ public class PowerCommandsCommand implements CommandExecutor, TabCompleter {
     //inventory manager instance
     private final InventoryManager iM = new InventoryManager();
 
+    private static final CommandManager cM = new CommandManager();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
@@ -32,7 +38,7 @@ public class PowerCommandsCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             if(args[0].equalsIgnoreCase("create")){
-                StringManager.cmd = args[1];
+                cM.setEditing(args[1], p);
                 p.openInventory(iM.getInventory("creation"));
             }
         }else{

@@ -34,6 +34,8 @@ prefix: '&5[&4&lPowerCommands&5]'
 #THE VARIABLE FOR THE PREFIX IS '?PREFIX?'
 messages:
   reload-configuration: "?PREFIX? &dSuccessfully reloaded config.yml"
+  change-command-name: "?PREFIX? &dType new command name in chat. To cancel type &5'cancel-cmd'"
+  change-command-perm: "?PREFIX? &dType new command permission in chat. To cancel type &5'cancel-cmd'"
 
 
 #------------------------------------------------------------
@@ -42,6 +44,9 @@ messages:
 #VARIABLE FOR THE COMMAND NAME IS '?CMD?'
 #VARIABLE FOR THE COMMAND PERMISSION IS '?PERM?'
 #VARIABLE FOR THE COMMAND CONSOLE USE IS '?CON_USE?'
+#VARIABLE FOR action-item IS '?ACTION?'
+#VARIABLE FOR argument-item IS '?ARG?'
+
 
 creation-inventory:
   title: "&d&lCommand Creation &5?CMD?"
@@ -81,3 +86,77 @@ creation-inventory:
       slot: 17
       lore:
         - "&7LEFT-CLICK to edit command arguments"
+    create:
+      type: 'LIME_WOOL'
+      title: "&5&lCREATE COMMAND"
+      slot: 22
+      lore:
+        - "&7LEFT-CLICK to create this command"
+actions-inventory:
+  title: "&d&lCommand Actions &5?CMD?"
+  size: 36
+  items:
+    create-action:
+      type: 'LEVER'
+      title: "&d&lCREATE ACTION"
+      slot: 31
+      lore:
+        - "&7LEFT-CLICK to create an action"
+    back:
+      type: 'REDSTONE_BLOCK'
+      title: "&4&lBACK"
+      slot: 32
+      lore:
+        - "&7LEFT-CLICK to go back to main menu"
+    action-item:
+      type: 'BOOK'
+      title: "&d&lACTION"
+      lore:
+        - "&7LEFT-CLICK to edit action"
+        - "&7Current action: &5?ACTION?"
+action-create-inventory:
+  title: "&d&lCreate Action"
+  size: 27
+  items:
+    select-action:
+      type: 'STONE_BUTTON'
+      title: "&d&lSELECT ACTION"
+      slot: 9
+      lore:
+        - "&7LEFT-CLICK to select action type"
+        - "&7Current type: &5?ACTION?"
+action-select-inventory:
+  title: "&d&lSelect Action"
+  size: 36
+  items:
+    action-type:
+      type: 'BOOK'
+      title: "&5&l?ACTION?"
+      lore:
+        - "&7LEFT-CLICK to select this action"
+        - "&7Type: &5?ACTION?"
+arguments-inventory:
+  title: "&d&lCommand Arguments"
+  size: 45
+  items:
+    create-argument:
+      type: 'BOOK'
+      title: "&d&lCREATE ARGUMENT"
+      slot: 40
+      lore:
+        - "&7LEFT-CLICK to create an argument"
+    back:
+      type: 'REDSTONE_BLOCK'
+      title: "&4&lBACK"
+      slot: 41
+      lore:
+        - "&7LEFT-CLICK to go back to main menu"
+    argument-item:
+      type: 'KNOWLEDGE_BOOK'
+      title: "&d&lARGUMENT"
+      lore:
+        - "&7LEFT-CLICK to edit argument"
+        - "&7Current name: &5?ARG?"
+
+
+

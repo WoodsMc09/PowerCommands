@@ -4,6 +4,8 @@ main: me.woodsmc.powercommands.PowerCommands
 api-version: 1.15
 authors: [ WoodsMc ]
 description: Create infinite commands! in-game GUI editors!
+softdepend:
+  - Vault
 commands:
   powercommands:
     description: Main command to create/delete/edit commands!

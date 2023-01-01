@@ -1,6 +1,7 @@
 package me.woodsmc.powercommands.messages;
 
 import me.woodsmc.powercommands.PowerCommands;
+import me.woodsmc.powercommands.command.CommandManager;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ public class StringManager {
     public static String getPrefix(){
         return formatColorCodes(pC.getConfig().getString("prefix"));
     }
+    //command manager instance
+    private static final CommandManager cM = new CommandManager();
     //get config messages
     public static String getConfigMessage(String msg){
         for(String s : pC.getConfig().getConfigurationSection("messages").getKeys(false)){
@@ -22,19 +25,6 @@ public class StringManager {
         }
         return null;
     }
-
-
-    //format string config variables
-
-    public static String cmd = "?CMD?";
-    public static String console_use = "True";
-    public static String perm = "perm.none";
-    public static String formatConfigVariables(String s){
-        s.replace("?CMD?", cmd).replace("?CON_USE?", console_use).replace("?PERM?", perm).replace("?PREFIX?", getPrefix());
-        return s;
-    }
-
-
 
 
     //format string color codes

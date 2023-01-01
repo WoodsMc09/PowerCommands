@@ -1,4 +1,4 @@
-package me.woodsmc.powercommands.actionslib;
+package me.woodsmc.powercommands.actions;
 
 import me.woodsmc.powercommands.PowerCommands;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -10,14 +10,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 
-public class ActionYML {
+public class ActionsYML {
 
     private FileConfiguration configuration = null;
     private PowerCommands plugin;
     private File configFile = null;
 
 
-    public ActionYML(PowerCommands plugin){
+    public ActionsYML(PowerCommands plugin){
         this.plugin = plugin;
         saveDefaultConfig();
     }
