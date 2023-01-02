@@ -30,6 +30,7 @@ public final class PowerCommands extends JavaPlugin {
     private boolean worleditEnabled;
     private List<String> softDependencies;
     private Economy economy;
+    private static PowerCommandsAPI api;
 
 
     @Override
@@ -98,6 +99,8 @@ public final class PowerCommands extends JavaPlugin {
             }
         }
 
+        api = new PowerCommandsAPI();
+
         //enable meesage
         getServer().getConsoleSender().sendMessage(StringManager.getPrefix() + " §dHas enabled successfully!");
     }
@@ -118,6 +121,10 @@ public final class PowerCommands extends JavaPlugin {
 
     public Economy getEconomy() {
         return economy;
+    }
+
+    public static PowerCommandsAPI getAPI(){
+        return api;
     }
 
 

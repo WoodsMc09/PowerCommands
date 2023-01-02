@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class ActionManager {
 
-    public List<Class<?>> getActionsClasses(){
+    public List<Class<?>> getActionLibrary(){
         Reflections actions = new Reflections("me.woodsmc.powercommands.actions.actionlib");
         Set<Class<? extends ActionManager>> actionClasses = actions.getSubTypesOf(ActionManager.class);
         List<Class<?>> classes = new ArrayList<>();

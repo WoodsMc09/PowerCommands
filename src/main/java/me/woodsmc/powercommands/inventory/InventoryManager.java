@@ -30,7 +30,7 @@ public class InventoryManager implements Listener {
         int size = pC.getConfig().getInt(inv + "-inventory.size");
         Inventory inventory = Bukkit.createInventory(null, size, title);
         if(inv.equalsIgnoreCase("action-select")){
-            List<Class<?>> classes = aM.getActionsClasses();
+            List<Class<?>> classes = aM.getActionLibrary();
             for(int i = 0; i < classes.size(); i++){
                 String name = classes.get(i).getName().replace("me.woodsmc.powercommands.actions.actionlib.", "").replace("objects.", "");
                 inventory.addItem(iM.getActionitem(name));
