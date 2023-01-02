@@ -1,12 +1,8 @@
 package me.woodsmc.powercommands.commands;
 
-import jdk.internal.foreign.abi.Binding;
 import me.woodsmc.powercommands.PowerCommands;
 import me.woodsmc.powercommands.command.CommandManager;
 import me.woodsmc.powercommands.inventory.InventoryManager;
-import me.woodsmc.powercommands.inventory.ItemManager;
-import me.woodsmc.powercommands.messages.StringManager;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,7 +11,6 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class PowerCommandsCommand implements CommandExecutor, TabCompleter {
     //main instance
