@@ -90,10 +90,5 @@
             <version>1.7</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.WoodsMc09</groupId>
-            <artifactId>PowerCommands</artifactId>
-            <version>1.0.0</version>
-        </dependency>
     </dependencies>
 </project>
