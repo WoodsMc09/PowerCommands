@@ -39,13 +39,20 @@ public final class PowerCommands extends JavaPlugin {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         //files
-        commandsYML = new CommandsYML(this);
-        actionsYML = new ActionsYML(this);
+        //custom files
+        commandsYML = new CommandsYML();
+        actionsYML = new ActionsYML();
+
+        //readme.txt for commandmanager folder
         File file = new File(this.getDataFolder(), "commandmanager/README.txt");
+        //check if file exists
         if(!file.exists()){
             try {
+                //create it
                 file.createNewFile();
                 BufferedWriter out = new BufferedWriter(new FileWriter(file));
+
+                //write in it
                 out.write("me.woodsmc.powercommands.plugins.commandmanager.README.txt\n" +
                         "\n" +
                         "Please do not change anything in any of these files in these files!\n" +
@@ -59,24 +66,32 @@ public final class PowerCommands extends JavaPlugin {
                         "Discord: https://discord.com/invite/5rJeEN8V7H\n" +
                         "Discord DM: WoodsGeorgeJr#2995\n" +
                         "SpigotMc Conversation: https://www.spigotmc.org/members/woodsgeorgejr.1084884/");
+
+                //close the file
                 out.close();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
         }
+
+        //reload config to generate it correctly
         reloadConfig();
 
         //commands
         getCommand("powercommands").setExecutor(new PowerCommandsCommand());
         getCommand("powercommands").setTabCompleter(new PowerCommandsCommand());
 
+        //custom commands register
         for(String s : commandsYML.getConfig().getStringList("commands")){
             try {
+                //get command map
                 final Field bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");
 
+                //create command map instance
                 bukkitCommandMap.setAccessible(true);
                 CommandMap commandMap = (CommandMap) bukkitCommandMap.get(Bukkit.getServer());
 
+                //register custom commands from command map
                 commandMap.register(s, new Command(s));
             } catch(Exception e) {
                 e.printStackTrace();
@@ -88,17 +103,24 @@ public final class PowerCommands extends JavaPlugin {
         pM.registerEvents(new CommandManager(), this);
 
         //soft dependencies
+        //get all soft dependencies in a list
         softDependencies = new ArrayList<>();
         softDependencies.add("Vault");
+
+        //loop through all of them
         for(String s : softDependencies){
+            //check if the soft dependencies are on the server
             if(getServer().getPluginManager().getPlugin(s) == null){
+                //log
                 getLogger().log(Level.INFO, "Disabling features from " + s + "...");
             }
             else{
+                //log
                 getLogger().log(Level.INFO, "Enabling features from " + s + "...");
             }
         }
 
+        //register api
         api = new PowerCommandsAPI();
 
         //enable meesage

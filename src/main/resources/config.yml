@@ -36,6 +36,7 @@ messages:
   reload-configuration: "?PREFIX? &dSuccessfully reloaded config.yml"
   change-command-name: "?PREFIX? &dType new command name in chat. To cancel type &5'cancel-cmd'"
   change-command-perm: "?PREFIX? &dType new command permission in chat. To cancel type &5'cancel-cmd'"
+  change-command-arg: "?PREFIX? &dType new command argument name in chat. To cancel type &5'cancel-cmd'"
 
 
 #------------------------------------------------------------
@@ -46,6 +47,7 @@ messages:
 #VARIABLE FOR THE COMMAND CONSOLE USE IS '?CON_USE?'
 #VARIABLE FOR action-item IS '?ACTION?'
 #VARIABLE FOR argument-item IS '?ARG?'
+#VARIABLE FOR argument-index IS '?INDEX?'
 
 
 creation-inventory:
@@ -157,6 +159,21 @@ arguments-inventory:
       lore:
         - "&7LEFT-CLICK to edit argument"
         - "&7Current name: &5?ARG?"
-
-
-
+argument-create-inventory:
+  title: "&d&lCreate Argument"
+  size: 27
+  items:
+    name:
+      type: 'PAPER'
+      title: "&d&lARGUMENT NAME"
+      slot: 10
+      lore:
+        - "&7LEFT-CLICK to change argument name"
+        - "&7Current name: &5?ARG?"
+    index:
+      type: 'OAK_SIGN'
+      title: "&d&lARGUMENT INDEX"
+      slot: 16
+      lore:
+        - "&7LEFT-CLICK to change the argument index"
+        - "&7Current index: ?INDEX?"

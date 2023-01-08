@@ -5,6 +5,10 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 public class CustomCommandExecuteEvent extends Event {
+    /*
+    This class is the event for when a custom command is executed.
+    This allows us to manage command actions.
+     */
 
     private static final HandlerList handlers = new HandlerList();
 

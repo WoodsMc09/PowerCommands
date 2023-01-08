@@ -51,16 +51,25 @@ public class InventoryManager implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event){
+        //check if clicked inv is null
         if(event.getClickedInventory() == null)
             return;
+        //check if clicked item is null
         if(event.getCurrentItem() == null)
             return;
+        //check if item meta is null
         if(event.getCurrentItem().getItemMeta() == null)
             return;
+        //check if item name is null
         if(event.getCurrentItem().getItemMeta().getDisplayName() == null)
             return;
+
+        //get clicked item
         ItemStack item = event.getCurrentItem();
+        //get player (who clicked)
         Player p = (Player) event.getWhoClicked();
+
+        //TODO Clean up these if statements
         if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("creation", "actions-editor"))){
             p.openInventory(getInventory("actions"));
             return;
@@ -93,10 +102,18 @@ public class InventoryManager implements Listener {
             p.openInventory(getInventory("action-select"));
             return;
         }
+        if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("arguments", "create-argument"))){
+            p.openInventory(getInventory("argument-create"));
+            return;
+        }
 
+        //loop through config keys
         for(String s : pC.getConfig().getKeys(false)){
+            //check if it is an inventory
             if(s.contains("-inventory")){
+                //check if title is an inventory
                 if(event.getView().getTitle().equalsIgnoreCase(StringManager.formatColorCodes(pC.getConfig().getString(s + ".title")))){
+                    //cancel event
                     event.setCancelled(true);
                 }
             }

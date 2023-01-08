@@ -10,16 +10,24 @@ import java.util.List;
 public class StringManager {
     //main instance
     private static final PowerCommands pC = PowerCommands.getPlugin(PowerCommands.class);
+
     //main prefix
     public static String getPrefix(){
         return formatColorCodes(pC.getConfig().getString("prefix"));
     }
+
     //command manager instance
     private static final CommandManager cM = new CommandManager();
+
     //get config messages
     public static String getConfigMessage(String msg){
+        //loop through messages in config.yml.messages
         for(String s : pC.getConfig().getConfigurationSection("messages").getKeys(false)){
+
+            //check for correct message
             if(s.equalsIgnoreCase(msg)){
+
+                //return formatted message
                 return formatColorCodes(pC.getConfig().getString("messages." + s));
             }
         }
@@ -31,6 +39,7 @@ public class StringManager {
     public static String formatColorCodes(String s){
         return ChatColor.translateAlternateColorCodes('&', s);
     }
+
     //format string list color codes
     public static List<String> formatListColorCodes(List<String> list){
         List<String> l = new ArrayList<>();
