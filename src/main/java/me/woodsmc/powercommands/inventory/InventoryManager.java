@@ -29,8 +29,10 @@ public class InventoryManager implements Listener {
         String title = StringManager.formatColorCodes(cM.formatCommandVars(pC.getConfig().getString(inv + "-inventory.title")));
         int size = pC.getConfig().getInt(inv + "-inventory.size");
         Inventory inventory = Bukkit.createInventory(null, size, title);
+
         if(inv.equalsIgnoreCase("action-select")){
             List<Class<?>> classes = aM.getActionLibrary();
+
             for(int i = 0; i < classes.size(); i++){
                 String name = classes.get(i).getName().replace("me.woodsmc.powercommands.actions.actionlib.", "").replace("objects.", "");
                 inventory.addItem(iM.getActionitem(name));
@@ -38,6 +40,7 @@ public class InventoryManager implements Listener {
 
             return inventory;
         }
+
         for (Map.Entry<Integer, ItemStack> entry : iM.getInventoryContents(inv).entrySet()) {
             int slot = entry.getKey();
             ItemStack item = entry.getValue();
@@ -69,42 +72,37 @@ public class InventoryManager implements Listener {
         //get player (who clicked)
         Player p = (Player) event.getWhoClicked();
 
-        //TODO Clean up these if statements
-        if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("creation", "actions-editor"))){
-            p.openInventory(getInventory("actions"));
-            return;
+        Map<String, Runnable> actionsByDisplayName = new HashMap<>();
+        String[][] displayNamesAndActions = {
+                {"creation", "actions-editor", "actions"},
+                {"actions", "back", "creation"},
+                {"creation", "name-editor", null},
+                {"creation", "permission-editor", null},
+                {"creation", "console-use", null},
+                {"actions", "create-action", "action-create"},
+                {"creation", "arguments-editor", "arguments"},
+                {"action-create", "select-action", "action-select"},
+                {"arguments", "create-argument", "argument-create"}
+        };
+
+        for (String[] displayNameAndAction : displayNamesAndActions) {
+            String displayName = iM.getConfigItemName(displayNameAndAction[0], displayNameAndAction[1]);
+            Runnable action;
+            if (displayNameAndAction[1].equals("name-editor")) {
+                action = () -> cM.changeCommandName();
+            } else if (displayNameAndAction[1].equals("permission-editor")) {
+                action = () -> cM.changeCommandPerm();
+            } else if (displayNameAndAction[1].equals("console-use")) {
+                action = () -> cM.changeConsoleUse();
+            } else {
+                action = () -> p.openInventory(getInventory(displayNameAndAction[2]));
+            }
+            actionsByDisplayName.put(displayName, action);
         }
-        if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("actions", "back"))){
-            p.openInventory(getInventory("creation"));
-            return;
-        }
-        if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("creation", "name-editor"))){
-            cM.changeCommandName();
-            return;
-        }
-        if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("creation", "permission-editor"))){
-            cM.changeCommandPerm();
-            return;
-        }
-        if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("creation", "console-use"))){
-            cM.changeConsoleUse();
-            return;
-        }
-        if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("actions", "create-action"))){
-            p.openInventory(getInventory("action-create"));
-            return;
-        }
-        if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("creation", "arguments-editor"))){
-            p.openInventory(getInventory("arguments"));
-            return;
-        }
-        if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("action-create", "select-action"))){
-            p.openInventory(getInventory("action-select"));
-            return;
-        }
-        if(item.getItemMeta().getDisplayName().equalsIgnoreCase(iM.getConfigItemName("arguments", "create-argument"))){
-            p.openInventory(getInventory("argument-create"));
-            return;
+
+        Runnable action = actionsByDisplayName.get(item.getItemMeta().getDisplayName());
+        if (action != null) {
+            action.run();
         }
 
         //loop through config keys

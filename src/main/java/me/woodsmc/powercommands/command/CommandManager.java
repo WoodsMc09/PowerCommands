@@ -80,6 +80,7 @@ public class CommandManager implements Listener {
             con_use = false;
 
             //set editor
+            setCommandPerm();
             setEditing(pC.getCommandsYML().getConfig().getString("editing.name"), Bukkit.getPlayerExact(pC.getCommandsYML().getConfig().getString("editing.player")));
             //open creation inventory for command editor
             Bukkit.getPlayerExact(pC.getCommandsYML().getConfig().getString("editing.player")).openInventory(iM.getInventory("creation"));
@@ -90,6 +91,7 @@ public class CommandManager implements Listener {
             con_use = true;
 
             //set editor
+            setCommandPerm();
             setEditing(pC.getCommandsYML().getConfig().getString("editing.name"), Bukkit.getPlayerExact(pC.getCommandsYML().getConfig().getString("editing.player")));
             //open creation inventory for command editor
             Bukkit.getPlayerExact(pC.getCommandsYML().getConfig().getString("editing.player")).openInventory(iM.getInventory("creation"));
