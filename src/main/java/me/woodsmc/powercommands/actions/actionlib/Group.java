@@ -8,12 +8,12 @@ public class Group extends ActionManager {
     //main instance
     private static final PowerCommands pC = PowerCommands.getPlugin(PowerCommands.class);
 
-    public static void executeAddToGroup(Player p, String group){
+    public static void executeAddToGroup(Player p, String group) {
         pC.getActionsYML().getConfig().set(String.valueOf(p.getUniqueId()), group);
         pC.getActionsYML().saveConfig();
     }
 
-    public static void executeRemoveFromGroup(Player p){
+    public static void executeRemoveFromGroup(Player p) {
         pC.getActionsYML().getConfig().set(String.valueOf(p.getUniqueId()), null);
         pC.getActionsYML().saveConfig();
     }

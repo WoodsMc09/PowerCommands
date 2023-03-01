@@ -5,9 +5,8 @@ import org.bukkit.event.Listener;
 
 public class CommandExecute implements Listener {
 
-
     @EventHandler
-    public void onCustomCommandExecute(CustomCommandExecuteEvent event){
+    public void onCustomCommandExecute(CustomCommandExecuteEvent event) {
 
     }
 }

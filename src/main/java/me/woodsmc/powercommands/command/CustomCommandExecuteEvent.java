@@ -6,17 +6,21 @@ import org.bukkit.event.HandlerList;
 
 public class CustomCommandExecuteEvent extends Event {
 
-    private static final HandlerList handlers = new HandlerList();
+    private static final HandlerList HANDLERS = new HandlerList();
 
-    private CommandSender sender;
-    private String command;
-    private String[] args;
+    private final CommandSender sender;
+    private final String command;
+    private final String[] args;
     private boolean cancelled;
 
-    public CustomCommandExecuteEvent(CommandSender sender, String command, String[] args){
+    public CustomCommandExecuteEvent(CommandSender sender, String command, String[] args) {
         this.sender = sender;
         this.command = command;
         this.args = args;
+    }
+
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
     }
 
     public CommandSender getSender() {
@@ -40,10 +44,6 @@ public class CustomCommandExecuteEvent extends Event {
     }
 
     public HandlerList getHandlers() {
-        return handlers;
-    }
-
-    public static HandlerList getHandlerList() {
-        return handlers;
+        return HANDLERS;
     }
 }

@@ -7,7 +7,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class ApplyEffect extends ActionManager {
 
-    public static void executeApplyEffect(LivingEntity e, PotionEffectType type, int dur, int amp, boolean particles, boolean icon){
-        e.addPotionEffect(new PotionEffect(type, dur*20, amp, false, particles, icon));
+    public static void executeApplyEffect(LivingEntity e, PotionEffectType type, int dur, int amp, boolean particles, boolean icon) {
+        e.addPotionEffect(new PotionEffect(type, dur * 20, amp, false, particles, icon));
     }
 }

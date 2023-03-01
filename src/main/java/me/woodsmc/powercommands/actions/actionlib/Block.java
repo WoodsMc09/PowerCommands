@@ -6,15 +6,15 @@ import org.bukkit.Material;
 
 public class Block extends ActionManager {
 
-    public static void executePlace(Material mat, Location location){
+    public static void executePlace(Material mat, Location location) {
         location.getBlock().setType(mat);
     }
 
-    public static void executeDestroy(Location location){
+    public static void executeDestroy(Location location) {
         location.getBlock().setType(Material.AIR);
     }
 
-    public static void executeBreak(Location location){
+    public static void executeBreak(Location location) {
         location.getBlock().breakNaturally();
     }
 }

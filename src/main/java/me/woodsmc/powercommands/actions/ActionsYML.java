@@ -12,37 +12,38 @@ import java.util.logging.Level;
 
 public class ActionsYML {
 
+    private final PowerCommands plugin;
     private FileConfiguration configuration = null;
-    private PowerCommands plugin;
     private File configFile = null;
 
 
-    public ActionsYML(PowerCommands plugin){
+    public ActionsYML(PowerCommands plugin) {
         this.plugin = plugin;
         saveDefaultConfig();
     }
 
-    public void reloadConfig(){
-        if(this.configFile == null){
+    public void reloadConfig() {
+        if (this.configFile == null) {
             this.configFile = new File(this.plugin.getDataFolder(), "commandmanager/actions.yml");
         }
         this.configuration = YamlConfiguration.loadConfiguration(this.configFile);
 
         InputStream defaultStream = this.plugin.getResource("commandmanager/actions.yml");
-        if(defaultStream != null){
+        if (defaultStream != null) {
             YamlConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defaultStream));
             this.configuration.setDefaults(defaultConfig);
         }
     }
 
-    public FileConfiguration getConfig(){
-        if(this.configuration == null){
+    public FileConfiguration getConfig() {
+        if (this.configuration == null) {
             reloadConfig();
         }
         return this.configuration;
     }
-    public void saveConfig(){
-        if(this.configuration == null || this.configFile == null){
+
+    public void saveConfig() {
+        if (this.configuration == null || this.configFile == null) {
         }
         try {
             getConfig().save(this.configFile);
@@ -55,7 +56,7 @@ public class ActionsYML {
         if (this.configFile == null) {
             this.configFile = new File(plugin.getDataFolder(), "commandmanager/actions.yml");
         }
-        if(!this.configFile.exists()){
+        if (!this.configFile.exists()) {
             plugin.saveResource("commandmanager/actions.yml", false);
         }
     }
