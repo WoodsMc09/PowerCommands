@@ -2,7 +2,7 @@ name: PowerCommands
 version: '${project.version}'
 main: me.woodsmc.powercommands.PowerCommands
 api-version: 1.15
-authors: [ WoodsMc ]
+authors: [ WoodsMc, Shreyas Ayyengar ]
 description: Create infinite commands! in-game GUI editors!
 softdepend:
   - Vault

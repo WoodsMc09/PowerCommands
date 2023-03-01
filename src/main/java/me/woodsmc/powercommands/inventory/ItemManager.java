@@ -8,7 +8,10 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ItemManager {
     //main instance
@@ -39,7 +42,7 @@ public class ItemManager {
             meta.setDisplayName(title);
             meta.setLore(cM.formatCommandVars(StringManager.formatListColorCodes(lore)));
             itemStack.setItemMeta(meta);
-            if(pC.getConfig().get(inv + "-inventory.items." + item + ".slot") == null)
+            if (pC.getConfig().get(inv + "-inventory.items." + item + ".slot") == null)
                 return contents;
             else
                 contents.put(slot, itemStack);
@@ -48,12 +51,12 @@ public class ItemManager {
         return contents;
     }
 
-    public ItemStack getActionitem(String action){
+    public ItemStack getActionitem(String action) {
         ItemStack item = new ItemStack(Material.getMaterial(pC.getConfig().getString("action-select-inventory.items.action-type.type").toUpperCase()));
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(StringManager.formatColorCodes(pC.getConfig().getString("action-select-inventory.items.action-type.title").replace("?ACTION?", action)));
         List<String> lore = new ArrayList<>();
-        for(String s : pC.getConfig().getStringList("action-select-inventory.items.action-type.lore")){
+        for (String s : pC.getConfig().getStringList("action-select-inventory.items.action-type.lore")) {
             lore.add(StringManager.formatColorCodes(s.replace("?ACTION?", action)));
         }
         meta.setLore(lore);
@@ -61,7 +64,7 @@ public class ItemManager {
         return item;
     }
 
-    public String getConfigItemName(String inv, String item){
+    public String getConfigItemName(String inv, String item) {
         return StringManager.formatColorCodes(pC.getConfig().getString(inv + "-inventory.items." + item + ".title"));
     }
 

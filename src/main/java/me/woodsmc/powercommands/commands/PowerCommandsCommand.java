@@ -13,48 +13,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PowerCommandsCommand implements CommandExecutor, TabCompleter {
+    private static final CommandManager COMMAND_MANAGER = new CommandManager();
     //main instance
-    private final PowerCommands pC = PowerCommands.getPlugin(PowerCommands.class);
+    private final PowerCommands powerCommands = PowerCommands.getPlugin(PowerCommands.class);
     //inventory manager instance
-    private final InventoryManager iM = new InventoryManager();
-
-    private static final CommandManager cM = new CommandManager();
+    private final InventoryManager inventoryManager = new InventoryManager();
+    private final List<String> arg0 = new ArrayList<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             //is player
             Player p = (Player) sender;
-            if(args.length != 2){
+            if (args.length != 2) {
                 p.sendMessage("§cInsufficient usage!");
                 p.sendMessage("§5§l/pc create <name> §d- Create a command!");
                 p.sendMessage("§5§l/pc delete <name> §d- Delete a command!");
                 p.sendMessage("§5§l/pc edit <name> §d- Edit a command!");
                 return true;
             }
-            if(args[0].equalsIgnoreCase("create")){
-                cM.setEditing(args[1], p);
-                p.openInventory(iM.getInventory("creation"));
+            if (args[0].equalsIgnoreCase("create")) {
+                COMMAND_MANAGER.setEditing(args[1], p);
+                p.openInventory(inventoryManager.getInventory("creation"));
             }
-        }else{
+        } else {
             //is console
             sender.sendMessage("§4§lSorry! §dConsole cannot use this command!");
         }
+
         return true;
     }
 
-    List<String> arg0 = new ArrayList<>();
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if(args.length == 1){
+        if (args.length == 1) {
             arg0.add("create");
             arg0.add("delete");
             arg0.add("edit");
         }
         List<String> resultA = new ArrayList<>();
-        if(args.length == 1){
-            for(String a : arg0){
-                if(a.toLowerCase().startsWith(args[0].toLowerCase())){
+
+        if (args.length == 1) {
+            for (String a : arg0) {
+                if (a.toLowerCase().startsWith(args[0].toLowerCase())) {
                     resultA.add(a);
                 }
                 return resultA;

@@ -8,22 +8,21 @@ public class Economy extends ActionManager {
     //main instance
     private static final PowerCommands pC = PowerCommands.getPlugin(PowerCommands.class);
 
-    public static void executeSetBalance(OfflinePlayer p, double d){
+    public static void executeSetBalance(OfflinePlayer p, double d) {
         double balance = pC.getEconomy().getBalance(p);
         double difference = balance - d;
-        if(difference > 0){
+        if (difference > 0) {
             pC.getEconomy().depositPlayer(p, difference);
-        }
-        else{
+        } else {
             pC.getEconomy().withdrawPlayer(p, -difference);
         }
     }
 
-    public static void executeDeposit(OfflinePlayer p, double d){
+    public static void executeDeposit(OfflinePlayer p, double d) {
         pC.getEconomy().depositPlayer(p, d);
     }
 
-    public static void executeWithdraw(OfflinePlayer p, double d){
+    public static void executeWithdraw(OfflinePlayer p, double d) {
         pC.getEconomy().withdrawPlayer(p, d);
     }
 }

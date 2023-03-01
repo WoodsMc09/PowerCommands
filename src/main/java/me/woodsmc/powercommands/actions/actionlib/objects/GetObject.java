@@ -17,42 +17,42 @@ public class GetObject extends ActionManager {
     //main instance
     private static final PowerCommands pC = PowerCommands.getPlugin(PowerCommands.class);
 
-    public static double executeGetLivingEntityHealth(LivingEntity e){
+    public static double executeGetLivingEntityHealth(LivingEntity e) {
         return e.getHealth();
     }
 
-    public static int executeGetPlayerFoodLevel(Player p){
+    public static int executeGetPlayerFoodLevel(Player p) {
         return p.getFoodLevel();
     }
 
-    public static int executeGetPlayerStatistic(Player p, String statistic){
+    public static int executeGetPlayerStatistic(Player p, String statistic) {
         Statistic stat = Statistic.valueOf(statistic.toUpperCase());
-        if(stat == null)
+        if (stat == null)
             Bukkit.getLogger().log(Level.SEVERE, "[PowerCommands] executeGetPlayerStatistic." + statistic + " not found!");
         return p.getStatistic(stat);
     }
 
-    public static Location executeGetEntityLocation(Entity e){
+    public static Location executeGetEntityLocation(Entity e) {
         return e.getLocation();
     }
 
-    public static float executeGetPlayerWalkingSpeed(Player p){
+    public static float executeGetPlayerWalkingSpeed(Player p) {
         return p.getWalkSpeed();
     }
 
-    public static float executeGetPlayerFlyingSpeed(Player p){
+    public static float executeGetPlayerFlyingSpeed(Player p) {
         return p.getFlySpeed();
     }
 
-    public static String executeGetPlayerGroup(Player p){
+    public static String executeGetPlayerGroup(Player p) {
         return pC.getActionsYML().getConfig().getString(String.valueOf(p.getUniqueId()));
     }
 
-    public static double executeGetPlayerBalance(OfflinePlayer p){
+    public static double executeGetPlayerBalance(OfflinePlayer p) {
         return pC.getEconomy().getBalance(p);
     }
 
-    public static List<Entity> executeGetNearbyEntities(Location location, int x, int y, int z){
+    public static List<Entity> executeGetNearbyEntities(Location location, int x, int y, int z) {
         return (List<Entity>) location.getWorld().getNearbyEntities(location, x, y, z);
     }
 }

@@ -24,13 +24,11 @@ import java.util.logging.Level;
 
 public final class PowerCommands extends JavaPlugin {
 
+    private boolean vaultEnabled, worleditEnabled;
     private CommandsYML commandsYML;
     private ActionsYML actionsYML;
-    private boolean vaultEnabled;
-    private boolean worleditEnabled;
     private List<String> softDependencies;
     private Economy economy;
-
 
     @Override
     public void onEnable() {
@@ -41,7 +39,7 @@ public final class PowerCommands extends JavaPlugin {
         commandsYML = new CommandsYML(this);
         actionsYML = new ActionsYML(this);
         File file = new File(this.getDataFolder(), "commandmanager/README.txt");
-        if(!file.exists()){
+        if (!file.exists()) {
             try {
                 file.createNewFile();
                 BufferedWriter out = new BufferedWriter(new FileWriter(file));
@@ -69,7 +67,7 @@ public final class PowerCommands extends JavaPlugin {
         getCommand("powercommands").setExecutor(new PowerCommandsCommand());
         getCommand("powercommands").setTabCompleter(new PowerCommandsCommand());
 
-        for(String s : commandsYML.getConfig().getStringList("commands")){
+        for (String s : commandsYML.getConfig().getStringList("commands")) {
             try {
                 final Field bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");
 
@@ -77,7 +75,7 @@ public final class PowerCommands extends JavaPlugin {
                 CommandMap commandMap = (CommandMap) bukkitCommandMap.get(Bukkit.getServer());
 
                 commandMap.register(s, new Command(s));
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -89,11 +87,10 @@ public final class PowerCommands extends JavaPlugin {
         //soft dependencies
         softDependencies = new ArrayList<>();
         softDependencies.add("Vault");
-        for(String s : softDependencies){
-            if(getServer().getPluginManager().getPlugin(s) == null){
+        for (String s : softDependencies) {
+            if (getServer().getPluginManager().getPlugin(s) == null) {
                 getLogger().log(Level.INFO, "Disabling features from " + s + "...");
-            }
-            else{
+            } else {
                 getLogger().log(Level.INFO, "Enabling features from " + s + "...");
             }
         }
@@ -119,6 +116,4 @@ public final class PowerCommands extends JavaPlugin {
     public Economy getEconomy() {
         return economy;
     }
-
-
 }

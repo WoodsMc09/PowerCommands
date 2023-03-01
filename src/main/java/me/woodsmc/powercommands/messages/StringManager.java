@@ -8,33 +8,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringManager {
-    //main instance
-    private static final PowerCommands pC = PowerCommands.getPlugin(PowerCommands.class);
+
+    private static final PowerCommands POWER_COMMANDS = PowerCommands.getPlugin(PowerCommands.class); // JavaPlugin instance
+    private static final CommandManager COMMAND_MANAGER = new CommandManager(); // command manager instance
+
     //main prefix
-    public static String getPrefix(){
-        return formatColorCodes(pC.getConfig().getString("prefix"));
+    public static String getPrefix() {
+        return formatColorCodes(POWER_COMMANDS.getConfig().getString("prefix"));
     }
-    //command manager instance
-    private static final CommandManager cM = new CommandManager();
+
     //get config messages
-    public static String getConfigMessage(String msg){
-        for(String s : pC.getConfig().getConfigurationSection("messages").getKeys(false)){
-            if(s.equalsIgnoreCase(msg)){
-                return formatColorCodes(pC.getConfig().getString("messages." + s));
+    public static String getConfigMessage(String msg) {
+        for (String s : POWER_COMMANDS.getConfig().getConfigurationSection("messages").getKeys(false)) {
+            if (s.equalsIgnoreCase(msg)) {
+                return formatColorCodes(POWER_COMMANDS.getConfig().getString("messages." + s));
             }
         }
         return null;
     }
 
-
-    //format string color codes
-    public static String formatColorCodes(String s){
+    // format string color codes
+    public static String formatColorCodes(String s) {
         return ChatColor.translateAlternateColorCodes('&', s);
     }
-    //format string list color codes
-    public static List<String> formatListColorCodes(List<String> list){
+
+    // format string list color codes
+    public static List<String> formatListColorCodes(List<String> list) {
+        // todo use streams
         List<String> l = new ArrayList<>();
-        for(String s : list){
+        for (String s : list) {
             l.add(formatColorCodes(s));
         }
         return l;
